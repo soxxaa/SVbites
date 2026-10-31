@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SV bites | Nigerian Kuli Kuli</title>
+<link rel="icon" href="logo-badge.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loading screen -->
+<div id="loader">
+  <div class="ld-glow"></div>
+  <svg viewBox="0 0 400 400" class="ld-badge" aria-label="SV bites">
+    <defs>
+      <mask id="ldbite"><rect width="400" height="400" fill="#fff"/><circle cx="335" cy="95" r="38"/><circle cx="308" cy="62" r="24"/></mask>
+      <clipPath id="ldclip"><circle cx="200" cy="200" r="170"/></clipPath>
+      <linearGradient id="ldshine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    </defs>
+    <g class="ld-pop">
+      <circle cx="200" cy="200" r="170" fill="#6A00D9" mask="url(#ldbite)"/>
+      <g clip-path="url(#ldclip)" mask="url(#ldbite)"><g class="ld-shine"><rect x="-160" width="90" height="400" fill="url(#ldshine)" transform="skewX(-20)"/></g></g>
+      <g transform="translate(30 62) scale(.6)" fill="none" stroke="#fff">
+        <g transform="skewX(-8)">
+          <path class="ld-s" pathLength="1" d="M235 112 H150 C104 112 104 190 150 190 H215 C264 190 264 270 215 270 H105" stroke-width="46" stroke-linejoin="round"/>
+          <polygon class="ld-v" points="262,92 324,92 358,205 402,92 464,92 386,288 330,288" fill="#fff" stroke-width="6" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <g class="ld-nut" fill="#F2A93B">
+        <ellipse cx="184" cy="305" rx="22" ry="15" transform="rotate(-20 184 305)"/>
+        <ellipse cx="216" cy="305" rx="22" ry="15" transform="rotate(20 216 305)"/>
+      </g>
+    </g>
+  </svg>
+  <p class="ld-tag">Crunchy · Spicy · Naija</p>
+  <div class="ld-bar"><span></span></div>
+</div>
+<script>
+// Failsafe: the loading screen always leaves, even if something fails to load
+setTimeout(function(){var l=document.getElementById('loader');if(l){l.classList.add('done');setTimeout(function(){l.remove()},800)}},6000);
+</script>
+
+<!-- Mini floating loader (no background) -->
+<div id="miniLoader" class="mini hidden" aria-hidden="true">
+  <svg viewBox="0 0 400 400">
+    <defs><mask id="mlbite"><rect width="400" height="400" fill="#fff"/><circle cx="335" cy="95" r="38"/><circle cx="308" cy="62" r="24"/></mask></defs>
+    <circle cx="200" cy="200" r="170" fill="#6A00D9" mask="url(#mlbite)"/>
+    <g transform="translate(30 62) scale(.6)" fill="none" stroke="#fff">
+      <g transform="skewX(-8)">
+        <path class="ml-s" pathLength="1" d="M235 112 H150 C104 112 104 190 150 190 H215 C264 190 264 270 215 270 H105" stroke-width="46" stroke-linejoin="round"/>
+        <polygon points="262,92 324,92 358,205 402,92 464,92 386,288 330,288" fill="#fff" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+    </g>
+    <g class="ml-nut" fill="#F2A93B">
+      <ellipse cx="184" cy="305" rx="22" ry="15" transform="rotate(-20 184 305)"/>
+      <ellipse cx="216" cy="305" rx="22" ry="15" transform="rotate(20 216 305)"/>
+    </g>
+  </svg>
+</div>
+
+<header>
+  <div class="wrap">
+    <a href="#top"><img src="logo-wordmark.svg" alt="SV bites" class="logo"></a>
+    <nav><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <div class="actions">
+      <button id="authBtn" class="ghost">Login</button>
+      <button id="cartBtn">Cart (<span id="cartCount">0</span>)</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Crunchy. Spicy. Naija.</h1>
+      <p>Fresh Nigerian kuli kuli, made to bite. Order online and get it delivered to your door.</p>
+      <a href="#shop" class="cta">Shop now</a>
+    </div>
+    <img src="logo-badge.svg" alt="SV bites badge">
+  </div>
+</section>
+
+<main class="wrap" id="shop">
+  <h2 class="title">Our kuli kuli</h2>
+  <div id="chips" class="chips"></div>
+  <div id="products" class="grid"></div>
+</main>
+
+<section class="about wrap" id="about">
+  <h2 class="title">About SV bites</h2>
+  <p>SV bites makes crunchy, spicy kuli kuli, the classic Nigerian groundnut snack, packed for sharing and for snacking on the go. Add your story here.</p>
+</section>
+
+<footer id="contact">
+  <div class="wrap foot">
+    <div><img src="logo-wordmark.svg" alt="SV bites" class="logo flogo"><p>Nigerian kuli kuli, made to bite.</p></div>
+    <div><h4>Quick links</h4><a href="#shop">Shop</a><a href="#about">About</a></div>
+    <div><h4>Contact</h4><span id="ftEmail"></span><span id="ftPhone"></span><a id="ftIg" target="_blank" rel="noopener"></a></div>
+  </div>
+  <p class="copy">© <span id="yr"></span> SV bites. All rights reserved.</p>
+</footer>
+
+<!-- Owner floating menu -->
+<div id="fabMenu" class="fab-menu hidden">
+  <button id="mProduct">+ Product</button>
+  <button id="mCategory">+ Category</button>
+  <button id="mOrders">Orders</button>
+</div>
+<button id="fab" class="fab hidden" aria-label="Owner menu">+</button>
+
+<!-- Cart -->
+<aside id="cartPanel" class="panel hidden">
+  <div class="panel-head"><h2>Your cart</h2><button id="closeCart" class="ghost">✕</button></div>
+  <div id="cartItems"></div>
+  <p class="total">Total: <strong id="cartTotal">₦0</strong></p>
+  <form id="checkoutForm">
+    <input id="coName" placeholder="Full name" required>
+    <input id="coEmail" type="email" placeholder="Email (for your receipt)" required>
+    <input id="coPhone" type="tel" placeholder="Phone number" required>
+    <textarea id="coAddress" placeholder="Delivery address" required></textarea>
+    <button type="submit" id="placeBtn">Place order</button>
+    <p id="coMsg" class="msg"></p>
+  </form>
+</aside>
+
+<!-- Owner orders -->
+<aside id="ordersPanel" class="panel wide hidden">
+  <div class="panel-head"><h2>Orders</h2><button id="closeOrders" class="ghost">✕</button></div>
+  <div id="ordersList"></div>
+</aside>
+
+<!-- Login / Signup -->
+<div id="authView" class="auth hidden">
+  <div class="auth-card">
+    <button id="closeAuth" class="ghost close">✕</button>
+    <img src="logo-badge.svg" alt="SV bites" class="badge">
+    <div class="tabs">
+      <button id="tabLogin" class="tab active">Login</button>
+      <button id="tabSignup" class="tab">Sign up</button>
+    </div>
+    <form id="authForm">
+      <input id="authEmail" type="email" placeholder="Email" required>
+      <input id="authPass" type="password" placeholder="Password (min 6)" minlength="6" required>
+      <button type="submit" id="authSubmit">Login</button>
+      <p id="authMsg" class="msg"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Owner: product modal -->
+<div id="productModal" class="auth hidden">
+  <div class="auth-card left">
+    <button class="ghost close" data-close="productModal">✕</button>
+    <h3 id="pmTitle">Add product</h3>
+    <form id="productForm">
+      <input id="pName" placeholder="Product name" required>
+      <input id="pPrice" type="number" min="0" step="1" placeholder="Price (₦)" required>
+      <textarea id="pDesc" placeholder="Description"></textarea>
+      <select id="pCat"></select>
+      <label class="file">Photo <input id="pImg" type="file" accept="image/*"></label>
+      <label class="check"><input id="pStock" type="checkbox" checked> In stock</label>
+      <button type="submit" id="pSave">Save</button>
+      <p id="pMsg" class="msg"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Owner: category modal -->
+<div id="categoryModal" class="auth hidden">
+  <div class="auth-card left">
+    <button class="ghost close" data-close="categoryModal">✕</button>
+    <h3>Add category</h3>
+    <form id="categoryForm">
+      <input id="cName" placeholder="Category name" required>
+      <button type="submit">Add</button>
+      <p id="cMsg" class="msg"></p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

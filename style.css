@@ -1,0 +1,130 @@
+:root{--purple:#6A00D9;--dark:#1a1024;--gold:#F2A93B;--cream:#FFF8EE;--line:#eadfcf}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--cream);color:var(--dark)}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+button{background:var(--purple);color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:600;font-size:15px;cursor:pointer}
+button:disabled{opacity:.6}
+button.ghost{background:transparent;color:var(--purple);border:1.5px solid var(--purple)}
+.hidden{display:none!important}
+
+/* Header */
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.logo{height:44px;width:auto;display:block}
+nav{display:none;gap:24px;margin-left:28px}
+nav a{color:var(--dark);text-decoration:none;font-weight:600}
+nav a:hover{color:var(--purple)}
+.actions{margin-left:auto;display:flex;gap:8px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a1024,#3b0a7a);color:#fff}
+.hero .wrap{display:grid;gap:22px;padding:40px 16px;text-align:center;align-items:center}
+.hero h1{font-size:30px;margin-bottom:10px}
+.hero p{opacity:.88;line-height:1.5}
+.hero img{width:170px;margin:auto;filter:drop-shadow(0 10px 40px rgba(242,169,59,.35))}
+.cta{display:inline-block;margin-top:18px;background:var(--gold);color:#1a1024;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none}
+
+/* Shop */
+.title{margin:28px 0 12px;font-size:22px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px}
+.chip{background:#fff;color:var(--dark);border:1.5px solid var(--line);white-space:nowrap}
+.chip.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding-bottom:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card .img{aspect-ratio:1;background:linear-gradient(135deg,var(--gold),#f7c873);display:flex;align-items:center;justify-content:center;font-size:44px}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .body{padding:10px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card h3{font-size:15px}
+.card p{font-size:13px;opacity:.7;flex:1}
+.price{font-weight:700;color:var(--purple)}
+.card button{margin-top:6px;padding:8px}
+.sold{position:absolute;top:8px;left:8px;background:#1a1024;color:#fff;font-size:12px;padding:3px 8px;border-radius:8px}
+.ocontrols{display:flex;gap:6px;margin-top:6px}
+.ocontrols button{flex:1;padding:6px;font-size:13px}
+.ocontrols .del{background:#c62828}
+.about{padding-bottom:30px;line-height:1.6;max-width:720px}
+
+/* Footer */
+footer{background:var(--dark);color:#e9e2f3;margin-top:20px}
+.foot{display:grid;gap:22px;padding-top:30px;padding-bottom:20px}
+.foot h4{margin-bottom:8px;color:var(--gold)}
+.foot a,.foot span{display:block;color:#e9e2f3;text-decoration:none;margin-bottom:6px;font-size:14px}
+.flogo{background:#fff;border-radius:10px;padding:4px 8px;margin-bottom:10px;height:48px}
+.copy{text-align:center;font-size:13px;opacity:.6;padding:14px;border-top:1px solid rgba(255,255,255,.1)}
+
+/* Panels + modals */
+.panel{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:#fff;z-index:20;padding:16px;overflow:auto;box-shadow:-8px 0 30px rgba(0,0,0,.2)}
+.panel.wide{width:min(560px,100%)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.line{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{padding:2px 9px;border-radius:8px}
+.total{margin:12px 0;font-size:17px}
+form{display:flex;flex-direction:column;gap:10px}
+input,textarea,select{padding:12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+textarea{min-height:70px}
+.msg{font-size:14px;min-height:18px}
+.auth{position:fixed;inset:0;background:rgba(26,16,36,.6);z-index:30;display:flex;align-items:center;justify-content:center;padding:16px}
+.auth-card{background:#fff;border-radius:18px;padding:22px;width:min(380px,100%);position:relative;text-align:center;max-height:92vh;overflow:auto}
+.auth-card.left{text-align:left}
+.auth-card.left h3{margin-bottom:12px}
+.auth-card .close{position:absolute;top:10px;right:10px;padding:4px 9px}
+.badge{width:130px;height:130px;margin-bottom:8px}
+.tabs{display:flex;gap:6px;margin:8px 0 14px}
+.tab{flex:1;background:#f1e9fb;color:var(--purple)}
+.tab.active{background:var(--purple);color:#fff}
+.file,.check{font-size:14px;display:flex;flex-direction:column;gap:4px}
+.check{flex-direction:row;align-items:center;gap:8px}
+.order{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;font-size:14px;line-height:1.5}
+.order select{margin-top:6px;padding:8px}
+
+/* Owner floating button */
+.fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1a1024;font-size:30px;z-index:15;box-shadow:0 6px 20px rgba(0,0,0,.3);padding:0}
+.fab-menu{position:fixed;right:18px;bottom:84px;z-index:15;display:flex;flex-direction:column;gap:8px}
+.fab-menu button{box-shadow:0 4px 14px rgba(0,0,0,.25)}
+
+/* Desktop */
+@media(min-width:800px){
+  nav{display:flex}
+  .hero .wrap{grid-template-columns:1.2fr .8fr;text-align:left;padding:76px 16px}
+  .hero h1{font-size:54px}
+  .hero p{font-size:19px;max-width:480px}
+  .hero img{width:300px}
+  .grid{grid-template-columns:repeat(4,1fr);gap:18px}
+  .card h3{font-size:16px}
+  .foot{grid-template-columns:2fr 1fr 1.5fr}
+  .title{font-size:28px;margin-top:44px}
+}
+
+/* Loading screen */
+#loader{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#3b0a7a,#120a1c 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .7s ease,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+.ld-glow{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(242,169,59,.28),transparent 65%);animation:glow 2.4s ease-in-out infinite}
+.ld-badge{width:190px;height:190px;position:relative;overflow:visible}
+.ld-pop{transform-box:view-box;transform-origin:50% 50%;animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}
+.ld-s{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1s .55s ease forwards}
+.ld-v{transform-box:fill-box;transform-origin:50% 100%;opacity:0;animation:rise .6s 1.1s ease forwards}
+.ld-nut{animation:bounce 1.1s 1.5s ease-in-out infinite}
+.ld-shine{animation:shine 1.8s 1.6s ease-in-out infinite}
+.ld-tag{color:#e9d8ff;letter-spacing:.28em;font-size:12px;text-transform:uppercase;opacity:0;animation:fadeup .8s 1.4s ease forwards;position:relative}
+.ld-bar{width:150px;height:3px;border-radius:3px;background:rgba(255,255,255,.15);overflow:hidden;position:relative}
+.ld-bar span{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--gold),#fff);border-radius:3px;animation:load 1.3s ease-in-out infinite}
+@keyframes pop{from{transform:scale(.4) rotate(-12deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes rise{from{opacity:0;transform:scaleY(.2)}to{opacity:1;transform:scaleY(1)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes shine{from{transform:translateX(0)}to{transform:translateX(620px)}}
+@keyframes glow{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(380%)}}
+@media(prefers-reduced-motion:reduce){#loader *{animation-duration:.01s!important;animation-iteration-count:1!important}}
+
+/* Mini floating loader */
+.mini{position:fixed;left:50%;top:50%;width:68px;height:68px;margin:-34px 0 0 -34px;z-index:60;pointer-events:none;animation:mhover 1.6s ease-in-out infinite;filter:drop-shadow(0 10px 16px rgba(106,0,217,.5))}
+.mini svg{width:100%;height:100%;overflow:visible}
+.ml-s{stroke-dasharray:1;animation:mdraw 1.1s ease-in-out infinite alternate}
+.ml-nut{animation:mbounce .8s ease-in-out infinite}
+@keyframes mhover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes mdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes mbounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
