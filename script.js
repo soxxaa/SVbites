@@ -141,20 +141,37 @@ $('checkoutForm').onsubmit = withBusy(async e => {
   if (error) { msg.textContent = error.message; $('placeBtn').disabled = false; return; }
   const params = {
     order_id: String(data.id).slice(0, 8), customer_name: order.name, phone: order.phone,
-    address: order.address, total: naira(order.total),
+    address: order.address, total: naira(order.total), customer_email: order.email,
     items: cart.map(c => `${c.qty} x ${c.name}`).join('\n')
   };
-  try {
-    if (CONFIG.EMAILJS_PUBLIC_KEY && window.emailjs) {
-      await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_CUSTOMER, { ...params, to_email: order.email });
-      await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_OWNER, { ...params, to_email: CONFIG.OWNER_EMAIL, customer_email: order.email });
-    }
-  } catch (err) { console.warn('Email failed', err); }
+  let customerOk = false, emailErr = '';
+  if (CONFIG.EMAILJS_PUBLIC_KEY && window.emailjs) {
+    const res = await Promise.allSettled([
+      emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_CUSTOMER, { ...params, to_email: order.email }),
+      emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_CUSTOMER, { ...params, to_email: CONFIG.OWNER_EMAIL })
+    ]);
+    customerOk = res[0].status === 'fulfilled';
+    res.forEach(r => { if (r.status === 'rejected') { console.warn('Email failed', r.reason); emailErr = emailErr || (r.reason?.text || r.reason?.message || String(r.reason)); } });
+  } else emailErr = 'Email is not set up on this site yet.';
+  showThanks(order, params, customerOk, emailErr);
   cart = []; saveCart();
   $('checkoutForm').reset(); $('coEmail').value = user.email;
-  msg.textContent = 'Order placed! Check your email. We will contact you to confirm payment and delivery.';
+  $('cartPanel').classList.add('hidden');
   $('placeBtn').disabled = false;
 });
+
+function showThanks(order, p, ok, err) {
+  $('thanksBody').innerHTML = `
+    <h3>Thank you, ${esc(order.name.split(' ')[0])}!</h3>
+    <p class="tsub">Your order <strong>#${esc(p.order_id)}</strong> has been received.</p>
+    <div class="tbox">${(order.items || []).map(i => `<div class="trow"><span>${esc(i.qty)} x ${esc(i.name)}</span><span>${naira(i.price * i.qty)}</span></div>`).join('')}
+      <div class="trow ttotal"><span>Total</span><span>${naira(order.total)}</span></div></div>
+    <div class="tdet"><strong>Delivery details</strong><br>${esc(order.name)}<br>${esc(order.phone)}<br>${esc(order.address)}</div>
+    <p class="tnote">${ok ? `A receipt was sent to <strong>${esc(order.email)}</strong>.` : `Your order is saved, but we couldn't send the email receipt.<br><small>${esc(err)}</small>`}</p>
+    <p class="tnote">We will contact you shortly to confirm payment and delivery.</p>`;
+  $('thanksModal').classList.remove('hidden');
+}
+$('thanksClose').onclick = () => $('thanksModal').classList.add('hidden');
 
 // ---------- Owner tools ----------
 $('fab').onclick = () => $('fabMenu').classList.toggle('hidden');
