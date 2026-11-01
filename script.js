@@ -146,13 +146,13 @@ $('checkoutForm').onsubmit = withBusy(async e => {
   };
   let customerOk = false, emailErr = '';
   if (CONFIG.EMAILJS_PUBLIC_KEY && window.emailjs) {
-    const logo_url = CONFIG.LOGO_URL || new URL('logo-wordmark-email.png', location.href).href;
+    const logo_url = CONFIG.LOGO_URL || 'https://soxxaa.github.io/SVbites/logo-wordmark-email.png';
     const base = { ...params, logo_url };
     const toCustomer = { ...base, to_email: order.email, subject: `Order confirmed #${params.order_id}`,
-      heading: 'Order confirmed', subheading: `Thank you, ${order.name.split(' ')[0]}! Order #${params.order_id}`,
+      items_title: 'Your order', heading: 'Order confirmed', subheading: `Thank you, ${order.name.split(' ')[0]}! Order #${params.order_id}`,
       details_title: 'Delivering to', note: 'We will contact you shortly to confirm payment and delivery.' };
     const toOwner = { ...base, to_email: CONFIG.OWNER_EMAIL, subject: `New order #${params.order_id}: deliver to ${order.name}`,
-      heading: 'New order received', subheading: `Order #${params.order_id}`,
+      items_title: 'Order', heading: 'New order received', subheading: `Order #${params.order_id}`,
       details_title: 'Deliver to', note: 'Log in to your site as owner and tap Orders to update the status.' };
     const res = await Promise.allSettled([
       emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_CUSTOMER, toCustomer),
